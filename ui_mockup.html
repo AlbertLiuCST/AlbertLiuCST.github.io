@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="ui_mockup.css">
+        <script src="ui_mockup.js" defer></script>
+    </head>
+    <body>
+        <div class="flex-container">
+            <div class="searchBar">
+                <h5>Artist Directory</h5>
+                <div id="inputDiv">
+                    <input type="text">
+                    <button id="addArtistButton" onclick="addArtistButton()">Add artist</button>    
+                </div>
+            </div>
+            <div id="divAddArtist" class="addArtistForm" hidden>
+                <input class="addArtistInput" id="artistName" type="text" placeholder="Artist Name">
+                <input class="addArtistInput" id="artistAbout" type="text" placeholder="About Artist">
+                <input class="addArtistInput" id="artistImg" type="text" placeholder="Image url">
+                <button onclick="addButton()">Add</button>
+            </div>
+            <div id="searchListBox">                       
+            </div>
+        </div>
+    </body>
+</html>

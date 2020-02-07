@@ -3,13 +3,14 @@
         <link rel="stylesheet" type="text/css" href="ui_mockup.css">
         <script src="ui_mockup.js" defer></script>
     </head>
-    <body>
+    <body onload="init()">
         <div class="flex-container">
             <div class="searchBar">
                 <h5>Artist Directory</h5>
                 <div id="inputDiv">
-                    <input type="text">
-                    <button id="addArtistButton" onclick="addArtistButton()">Add artist</button>    
+                    <input id="searchInput"type="text">
+                    <button id="searchArtistButton" onclick="searchArtistButton()">Search</button>    
+                    <button id="addArtistButton" onclick="addArtistButton()">Add</button>   
                 </div>
             </div>
             <div id="divAddArtist" class="addArtistForm" hidden>

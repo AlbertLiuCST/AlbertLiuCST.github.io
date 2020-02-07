@@ -1,3 +1,29 @@
+function init(){
+    if(localStorage.getItem("artist") == null){
+        let artist = [];
+        localStorage.setItem("artist",JSON.stringify(artist));
+    }
+    loadArtists();
+}
+function loadArtists(){
+    var artists = JSON.parse(localStorage.getItem("artist"));
+    artists.forEach(function(art) {  addItem(art.img,art.name,art.abt); });
+    
+}
+function searchArtistButton(){
+    clearListItem();
+    let search = document.getElementById("searchInput").value;
+    var artists = JSON.parse(localStorage.getItem("artist"));
+    artists.forEach(function(art) {  
+        if(art.name.includes(search))
+            addItem(art.img,art.name,art.abt); 
+    });
+}
+function clearListItem(){
+    let search = document.getElementById("searchListBox");
+    search.innerHTML = ""
+
+}
 function addArtistButton(){
     clearElements('addArtistInput');
     showForm();
@@ -17,10 +43,21 @@ function addButton(){
     var name = document.getElementById("artistName").value;
     if(name === "")
         return;
-
+    
+    saveArtist(imgSrc, name,abt);
     addItem(imgSrc,name,abt);
 }
 
+function saveArtist(img, name,abt){
+    let artist = {};
+    artist.img = img;
+    artist.name = name;
+    artist.abt = abt;
+
+    let artistArr = JSON.parse(localStorage.getItem("artist"))
+    artistArr.push(artist);
+    localStorage.setItem("artist",JSON.stringify(artistArr));
+}
 function addItem(src, name, blurb){
     
     var id = Date.now();
@@ -53,8 +90,19 @@ function addItem(src, name, blurb){
 }
 
 function deleteItem(id){
+    deleteArtist(id);
     var element = document.getElementById(id);
     document.getElementById('searchListBox').removeChild(element);
+
+}
+function deleteArtist(id){
+    let name = document.getElementById(id).innerText.split("\n")[0];
+    let arr = JSON.parse(localStorage.getItem("artist"))
+    let newArr = arr.filter(function(obj){
+        return obj.name != name; 
+    });
+    localStorage.setItem("artist",JSON.stringify(newArr));
+    
 }
 function addImg(src){
     var img = document.createElement("img");

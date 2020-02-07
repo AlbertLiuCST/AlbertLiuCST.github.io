@@ -15,7 +15,7 @@ function searchArtistButton(){
     let search = document.getElementById("searchInput").value;
     var artists = JSON.parse(localStorage.getItem("artist"));
     artists.forEach(function(art) {  
-        if(art.name.includes(search))
+        if(art.name.toLowerCase().includes(search.toLowerCase()))
             addItem(art.img,art.name,art.abt); 
     });
 }
@@ -99,7 +99,7 @@ function deleteArtist(id){
     let name = document.getElementById(id).innerText.split("\n")[0];
     let arr = JSON.parse(localStorage.getItem("artist"))
     let newArr = arr.filter(function(obj){
-        return obj.name != name; 
+        return obj.name.toLowerCase() != name.toLowerCase(); 
     });
     localStorage.setItem("artist",JSON.stringify(newArr));
     
